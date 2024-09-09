@@ -8,8 +8,13 @@ jobs:
     steps:
         - name: Checkout Code
           uses: actions/checkout@v4
-        - name: Printing Foldes
-          run: ls
+        - name: Setup Node
+          uses: actions/checkout@v3
+          with:
+            node-version: '20.x'
+        - name: Install Dependencies
+          run: npm ci
+          working-directory: 04-using-actions/react-app      
     # 0. Checkout the code from the repository
     # 1. Install the dependants of react application
     # 2. Execute automated tests
