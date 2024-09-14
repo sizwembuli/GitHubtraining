@@ -31,6 +31,8 @@ jobs:
               run: |
                 echo "Variable value: ${{vars.MY_VAR}}"   
             - name: Print Env Variables
+              run: |
+                echo "Variable value: ${{vars.MY_VAR}}"
               env: 
                 MY_OVERWRITTEN_VAR: 'step'
               run: |         
