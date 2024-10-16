@@ -1,8 +1,8 @@
 name: 13 - Using Caching
 
 on: 
-  workflow_dispatch
-    inputs:
+   workflow_dispatch:
+     inputs:
       Use-cache:
         description: Whethe to execute cache step
         type: boolean
