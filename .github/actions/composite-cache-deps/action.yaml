@@ -24,7 +24,7 @@ runs:
       uses: actions/cache@v3
       with: 
         path: ${{ inputs.working-dir }}/node_modules
-        key: nodes-modules-${{ hashfiles('${{ inputs.node-version}}/package-lock.json') }}
+        key: nodes-modules-${{ hashfiles(format('{0}/{1}',inputs.working-dir, 'package-lock.json')) }}
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci
