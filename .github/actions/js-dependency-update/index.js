@@ -39,7 +39,7 @@ async function run() {
       cwd: workingDir
     });
 
-    if (gitStatus.stdout.length > 0 {
+    if (gitStatus.stdout.length > 0) {
       core.info('[js-dependency-update] : There are updates available!')
     } else {
         core.info('[js-dependency-update] : no updates at this point in time!')  
