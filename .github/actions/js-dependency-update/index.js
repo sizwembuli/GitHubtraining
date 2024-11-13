@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const exec = require('@actions/exec');
 
 const validateBranchName = ({ branchName }) => /^[a-zA-Z0-9_\-\.\/]+$/.test(branchName);
-const validateDirectoryname = ({ dirName }) => /^[a-zA-Z0-9_\-\.\/]+$/.test(dirName);
+const validateDirectoryName = ({ dirName }) => /^[a-zA-Z0-9_\-\.\/]+$/.test(dirName);
 async function run() {
     const baseBranch = core.getInput('base-branch');
     const targetBranch = core.getInput('target-branch');
@@ -10,19 +10,19 @@ async function run() {
     const workingDir = core.getInput('working-directory');
     const debug = core.getBooleanInput('debug');
 
-    core.setSecret(ghToken)
+    core.setSecret(ghToken);
 
-    if (validateBranchName({ branchName: baseBranch })) {
+    if (!validateBranchName({ branchName: baseBranch })) {
       core.setFailed('Invalid base-branch name. Branch names should include only characters, numbers, hyphens, underscores and forward slashes.');
       return;
     }
 
-    if (validateBranchName({ branchName: baseBranch })) {
+    if (!validateBranchName({ branchName: baseBranch })) {
         core.setFailed('Invalid target-branch name. Branch names should include only characters, numbers, hyphens, underscores and forward slashes.');
         return;
     }
 
-    if (validateDirectoryName({ dirNameName: workingDir })) {
+    if (!validateDirectoryName({ dirNameName: workingDir })) {
         core.setFailed('Invalid working directory name. Directory names should include only characters, numbers, hyphens, underscores, dots, and forward slashes.');
         return;
       }
