@@ -65,7 +65,11 @@ async function run() {
       ...commonExecOpts
     });
 
+    let updatesAvailable = false;
+
     if (gitStatus.stdout.length > 0) {
+      updatesAvailable = true;
+
       logger.debug('There are updates available ');
       logger.debug('setting up git')
       await setupGit();
@@ -107,8 +111,11 @@ async function run() {
     }
 
     } else {
-        logger.info('[js-dependency-update] : no updates at this point in time.');
+        logger.info(' no updates at this point in time.');
     }
+
+    logger.debug('setting updates-available output to ${updatesAvailable}');
+      core.setOutput('updates-available', updatesAvailable);
 }
 
 run();
