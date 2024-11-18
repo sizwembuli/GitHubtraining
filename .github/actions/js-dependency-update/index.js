@@ -18,10 +18,13 @@ debug: (message) => {
 },
 info: (message) => {
   core.info(`${prefix}${prefix ? ' : ' : ''}${message}`);
-}
-error: (message) =>
+},
+error: (message) => {
   core.error(`${prefix}${prefix ? ' : ' : ''}${message}`);
+  },
 });
+
+
 async function run() {
     const baseBranch = core.getInput('base-branch', { required: true });
     const headBranch = core.getInput('head-branch', { required: true });
