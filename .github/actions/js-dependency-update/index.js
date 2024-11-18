@@ -54,9 +54,9 @@ async function run() {
         return;
       }
     
-    logger.debug('base branch is ${baseBranch}');
-    logger.debug('head branch is ${headBranch}');
-    logger.debug('working directory is ${workingDir');
+    logger.debug('Base branch is ${baseBranch}');
+    logger.debug('Head branch is ${headBranch}');
+    logger.debug('Working directory is ${workingDir');
     
     logger.debug('checking for package updates')
     await exec.exec('npm update', [], {
@@ -96,20 +96,22 @@ async function run() {
 
       try {
         logger.debug('Creating PR using head branch ${headBranch}');
+
       await octokit.rest.pulls.create({
        owner: 'github.context.repo.owner',
        repo: 'github.context.repo.repo',
        tittle: 'Update NPM dependencies',
        body: 'This pull request updates NPM packages',
        base: baseBranch,
-       head: headBranch
+       head: headBranch,
       });
+
     } catch (e) {
       logger.error(
         'Something went wrong while creating the PR. Check logs below'
       );
 
-      core.setFailed();
+      core.setFailed(e.message);
       logger.error(e);
     }
 
