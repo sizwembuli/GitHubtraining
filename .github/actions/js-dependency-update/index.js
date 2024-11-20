@@ -74,20 +74,20 @@ async function run() {
       updatesAvailable = true;
 
       logger.debug('There are updates available ');
-      logger.debug('setting up git')
+      logger.debug('Setting up git')
       await setupGit();
 
       logger.debug('Commiting and pushing package*.json changes');
-      await exec.exec('git checkout -b ${headBranch}', [], {
+      await exec.exec(`git checkout -b ${headBranch}`, [], {
         ...commonExecOpts
       });
-      await exec.exec('git add package.json package-lock.json', [], {
+      await exec.exec(`git add package.json package-lock.json`, [], {
         ...commonExecOpts
       });
-      await exec.exec('git commit -m "chore: update dependencies"', [], {
+      await exec.exec(`git commit -m "chore: update dependencies"`, [], {
         ...commonExecOpts
       });
-      await exec.exec('git push -u origin ${headBranch} --force', [], {
+      await exec.exec(`git push -u origin ${headBranch} --force`, [], {
         ...commonExecOpts
       });
 
@@ -95,7 +95,7 @@ async function run() {
       const octokit = github.getOctokit(ghToken);
 
       try {
-        logger.debug('Creating PR using head branch ${headBranch}');
+        logger.debug(`Creating PR using head branch ${headBranch}`);
 
       await octokit.rest.pulls.create({
        owner: 'github.context.repo.owner',
@@ -116,10 +116,10 @@ async function run() {
     }
 
     } else {
-        logger.info(' no updates at this point in time.');
+        logger.info('no updates at this point in time.');
     }
 
-    logger.debug('setting updates-available output to ${updatesAvailable}');
+    logger.debug(`setting updates-available output to ${updatesAvailable}`);
       core.setOutput('updates-available', updatesAvailable);
 }
 

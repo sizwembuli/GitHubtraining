@@ -35,7 +35,7 @@ jobs:
               working-directory: ${{ inputs.working-dir }}
               gh-token: ${{ secrets.GITHUB_TOKEN }}
               debug: ${{ inputs.debug }}
-          - name: Print custom action outputs
+          - name: Print custom action output
             run: |
               echo "updates available: ${{ steps.update-deps.outputs.updates-available }}"
               
