@@ -22,7 +22,7 @@ inputs:
 
 outputs:
   updates-available:
-    description: Wheteher there are updates available.
+    description: Wheteher there are updates available. 
 
 
 runs:
